@@ -9,10 +9,11 @@ namespace CollectionsMasterConsoleUI
     {
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.Green;
             //TODO: Follow the steps provided in the comments under each region.
             //Make the console formatted to display each section well
             //Utlilize the method stubs at the bottom for the methods you must create ⬇⬇⬇
-
+            
             #region Arrays
             //TODO: Create an integer Array of size 50 - DONE
             int[] numbers = new int[50];
@@ -23,7 +24,7 @@ namespace CollectionsMasterConsoleUI
             //TODO: Print the first number of the array - DONE
             Console.WriteLine($"The first index is:{numbers[0]}");
             //TODO: Print the last number of the array - DONE            
-            Console.WriteLine($"The last index is:{numbers[49]}");
+            Console.WriteLine($"The last index is:{numbers[49]}"); // [numbers.Length -1] or [^1]
             Console.WriteLine("All Numbers Original");
             //UNCOMMENT this method to print out your numbers from arrays or lists - DONE
             NumberPrinter(numbers);
@@ -34,10 +35,10 @@ namespace CollectionsMasterConsoleUI
             /*  1) First way, using a custom method => Hint: Array._____(); - DONE
                 2) Second way, Create a custom method (scroll to bottom of page to find ⬇⬇⬇) - DONE
             */
-
+            var numbersReversed = numbers;
             Console.WriteLine("All Numbers Reversed:");
-            Array.Reverse(numbers);
-            NumberPrinter(numbers);
+            Array.Reverse(numbersReversed);
+            NumberPrinter(numbersReversed);
 
             Console.WriteLine("---------REVERSE CUSTOM------------");
             ReverseArray(numbers);
@@ -71,11 +72,13 @@ namespace CollectionsMasterConsoleUI
             //TODO: Print the capacity of the list to the console - DONE
             Console.WriteLine("Initial Capacity:");
             Console.WriteLine(intList.Capacity);
-
+            Console.WriteLine("---------------------");
             //TODO: Populate the List with 50 random numbers between 0 and 50 you will need a method for this - DONE   
             Populater(intList);
+            NumberPrinter(intList);
 
             //TODO: Print the new capacity - DONE
+            Console.WriteLine("---------------------");
             Console.WriteLine("New Capacity:");
             Console.WriteLine(intList.Capacity);
 
@@ -119,6 +122,7 @@ namespace CollectionsMasterConsoleUI
             var listToArray = intList.ToArray();
             //TODO: Clear the list - DONE
             intList.Clear();
+            Console.WriteLine("List is clear.\n");
 
             #endregion
         }
@@ -175,9 +179,12 @@ namespace CollectionsMasterConsoleUI
 
         private static void ReverseArray(int[] array)
         {
-            for (int i = array.Length - 1; i >= 0; i--)
+            var reversedArray = new int[array.Length];
+            var counter = 0;
+
+            for (var i = array.Length - 1; i >= 0; i--)
             {
-                Console.WriteLine(array[i]);
+                reversedArray[counter++] = array[i];
             }
 
         }

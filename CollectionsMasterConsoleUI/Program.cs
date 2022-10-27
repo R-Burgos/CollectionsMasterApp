@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 
 namespace CollectionsMasterConsoleUI
@@ -20,9 +21,9 @@ namespace CollectionsMasterConsoleUI
             Populater(numbers);
 
             //TODO: Print the first number of the array - DONE
-            Console.WriteLine(numbers[0]);
+            Console.WriteLine($"The first index is:{numbers[0]}");
             //TODO: Print the last number of the array - DONE            
-            Console.WriteLine(numbers[49]);
+            Console.WriteLine($"The last index is:{numbers[49]}");
             Console.WriteLine("All Numbers Original");
             //UNCOMMENT this method to print out your numbers from arrays or lists - DONE
             NumberPrinter(numbers);
@@ -36,16 +37,18 @@ namespace CollectionsMasterConsoleUI
 
             Console.WriteLine("All Numbers Reversed:");
             Array.Reverse(numbers);
+            NumberPrinter(numbers);
 
             Console.WriteLine("---------REVERSE CUSTOM------------");
             ReverseArray(numbers);
+            NumberPrinter(numbers);
 
             Console.WriteLine("-------------------");
 
             //TODO: Create a method that will set numbers that are a multiple of 3 to zero then print to the console all numbers - DONE
             Console.WriteLine("Multiple of three = 0: ");
             ThreeKiller(numbers);
-            
+            NumberPrinter(numbers);
 
             Console.WriteLine("-------------------");
 
@@ -102,19 +105,13 @@ namespace CollectionsMasterConsoleUI
             //TODO: Create a method that will remove all odd numbers from the list then print results - DONE
             Console.WriteLine("Evens Only!!");
             OddKiller(intList);
+            NumberPrinter(intList);
             Console.WriteLine("------------------");
 
             //TODO: Sort the list then print results - DONE
             Console.WriteLine("Sorted Evens!!");
             intList.Sort();
-            foreach (int x in intList)
-            {
-                if (x != 0)
-                {
-                    Console.WriteLine(x);
-                }
-             
-            }
+            NumberPrinter(intList);
             Console.WriteLine("------------------");
 
             //TODO: Convert the list to an array and store that into a variable - DONE
@@ -133,44 +130,19 @@ namespace CollectionsMasterConsoleUI
                 if (numbers[i] % 3 == 0)
                 {
                     numbers[i] = 0;
-                    Console.WriteLine(numbers[i]);
-                }
-                else
-                {
-                    Console.WriteLine(numbers[i]);
                 }
             }
         }
 
         private static void OddKiller(List<int> numberList)
         {
-            for (int i = 0; i < numberList.Count; i++)
-            {
-                if (numberList[i] % 2 != 0)
-                {
-                    numberList[i] = 0;
-                }
-                else
-                {
-                    Console.WriteLine(numberList[i]);
-                }
-
-            }
-            
+            numberList.RemoveAll(i => i % 2 != 0); 
         }
 
         private static void NumberChecker(List<int> numberList, int searchNumber)
         {
-            bool inList = false;  
-            for (int i = 0; i < numberList.Count; i++)
-            {
-                if (numberList[i] == searchNumber)
-                {
-                    inList = true;
-                }
-                
-            }
-            if (inList == true) 
+           
+            if (numberList.Contains(searchNumber)) 
             {
                 Console.WriteLine($"{searchNumber} is in the list.");
             }
@@ -185,7 +157,8 @@ namespace CollectionsMasterConsoleUI
             Random rng = new Random();
             for (int i = 0; i < 50; i++)
             {
-                numberList.Add( rng.Next(0, 51));
+                int randomize = rng.Next(50);
+                numberList.Add(randomize);
             }
 
         }
@@ -195,7 +168,8 @@ namespace CollectionsMasterConsoleUI
             Random rng = new Random();
             for (int i = 0; i < numbers.Length; i++)
             {
-                numbers[i] = rng.Next(0, 51);
+                int randomize = rng.Next(50);
+                numbers[i] = randomize;
             }
         }        
 
